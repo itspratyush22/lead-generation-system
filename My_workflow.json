@@ -1,0 +1,256 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test-webhook",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "931b7291-09e9-48dd-9a02-6de5366cd8e4",
+      "name": "Webhook",
+      "webhookId": "15825f1f-c394-47be-b325-beea5e5eeff8"
+    },
+    {
+      "parameters": {
+        "fromEmail": "sidraj4422@gmail.com",
+        "toEmail": "pratyush2244@gmail.com",
+        "html": "=You received a new lead:\n\nName: {{ $json[\"body\"][\"name\"] }}  \nEmail: {{ $json[\"body\"][\"email\"] }}  \nCompany: {{ $json[\"body\"][\"company\"] }}  \nMessage: {{ $json[\"body\"][\"message\"] }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "faefea6a-aac2-499a-9d47-477806c9b994",
+      "name": "Send Email",
+      "webhookId": "1841acba-8d76-4d08-af3f-0ef5a4bc53fe",
+      "credentials": {
+        "smtp": {
+          "id": "ri3actfe3yfq7pDp",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1U2--trQFtiSc-EOHeTCROu2PYps6tDgZH5bXRC9DSAw",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1U2--trQFtiSc-EOHeTCROu2PYps6tDgZH5bXRC9DSAw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "Name ": "={{ $node[\"Webhook\"].json.name }}",
+            "Email": "={{ $node[\"Webhook\"].json.email }}\n",
+            "Message": "={{ $node[\"Webhook\"].json.message }}\n\n\n",
+            "Company": "={{ $json.body.company }}\n"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name ",
+              "displayName": "Name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "accepted",
+              "displayName": "accepted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "rejected",
+              "displayName": "rejected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ehlo",
+              "displayName": "ehlo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "envelopeTime",
+              "displayName": "envelopeTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageTime",
+              "displayName": "messageTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageSize",
+              "displayName": "messageSize",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "envelope",
+              "displayName": "envelope",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        440,
+        0
+      ],
+      "id": "0ef4aafb-ce1d-4e3f-847f-11197ee4ecd4",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "5aiR0sJ4NBJr7Ewc",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1bdece44-957d-4206-a6ed-4a417b17e61f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d340f95bfe50358471e68613102322e61f320d14f237e0aa0c3a257b6b32b66d"
+  },
+  "id": "ZoYQ3ebcGyw9XWjm",
+  "tags": []
+}
