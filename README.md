@@ -150,6 +150,13 @@ Inside `lead-form/`, you can run:
 
 ---
 
+## 🙋‍♂️ Author
+
+- GitHub: [@itspratyush22](https://github.com/itspratyush22)
+- LinkedIn: [Pratyush Nayak](https://www.linkedin.com/in/pratyush-nayak-5b0a95238/)
+
+
+
 ## 📚 Resources
 
 - [n8n Docs](https://docs.n8n.io/)
